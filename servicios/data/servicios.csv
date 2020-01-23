@@ -1,0 +1,209 @@
+codigo,servicio,tela_fina,jeans,cuero_gamuza,categoria,ninguna,fiesta
+1,Ruedo a Máquina sólo con Overlock,15000    ,20000    ,25000    ,PANTALONES Y SHORT,0    ,0    
+1,Ruedo a Máquina ,20000    ,25000    ,30000    ,PANTALONES Y SHORT,0    ,0    
+1,Ruedo a Mano (invisible),25000    ,30000    ,35000    ,PANTALONES Y SHORT,0    ,0    
+1,Ruedo con collareta,30000    ,0    ,0    ,PANTALONES Y SHORT,0    ,0    
+1,Ruedo con vuelta,20000    ,25000    ,30000    ,PANTALONES Y SHORT,0    ,0    
+1,Ruedo forrado,30000    ,35000    ,40000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar cintura Pantalón,30000    ,35000    ,40000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar cadera Pantalón,30000    ,35000    ,40000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar cintura y cadera Pantalón,30000    ,35000    ,40000    ,PANTALONES Y SHORT,0    ,0    
+1,Estrechar/Achicar pierna Pantalón (achupinar),25000    ,30000    ,35000    ,PANTALONES Y SHORT,0    ,0    
+1,Estrechar/Achicar pierna pantalón de traje,40000    ,45000    ,50000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar cintura Pantalón Forrado,30000    ,35000    ,40000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar cadera Pantalón Forrado,30000    ,35000    ,40000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar cintura y cadera Pantalón Forrado,30000    ,35000    ,40000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar Pantalón Completo,50000    ,55000    ,60000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar cintura Short,30000    ,35000    ,40000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar cadera Short,30000    ,35000    ,40000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar cadera y cintura Short,30000    ,35000    ,40000    ,PANTALONES Y SHORT,0    ,0    
+1,Estrechar/Achicar pierna Short,20000    ,25000    ,30000    ,PANTALONES Y SHORT,0    ,0    
+1,Achicar Short Completo,45000    ,50000    ,55000    ,PANTALONES Y SHORT,0    ,0    
+1,Agrandar cintura y cadera (sin tela),35000    ,40000    ,45000    ,PANTALONES Y SHORT,0    ,0    
+1,Agrandar cintura (sin tela),35000    ,40000    ,45000    ,PANTALONES Y SHORT,0    ,0    
+1,Agrandar cadera  (sin tela),35000    ,40000    ,45000    ,PANTALONES Y SHORT,0    ,0    
+1,Agrandar pierna  (sin tela),35000    ,40000    ,45000    ,PANTALONES Y SHORT,0    ,0    
+1,Agrandar pantalón entero (sin tela),40000    ,45000    ,50000    ,PANTALONES Y SHORT,0    ,0    
+1,Cierre normal ,15000    ,20000    ,25000    ,PANTALONES Y SHORT,0    ,0    
+1,Cierre invisible ,20000    ,25000    ,30000    ,PANTALONES Y SHORT,0    ,0    
+1,Cierre pantalón forrado,20000    ,25000    ,30000    ,PANTALONES Y SHORT,0    ,0    
+1,Tiro Pantalón/Short ,20000    ,25000    ,30000    ,PANTALONES Y SHORT,0    ,0    
+1,Cambiar bolsillos ,25000    ,30000    ,35000    ,PANTALONES Y SHORT,0    ,0    
+1,Hacer bolsillos (sin tela),25000    ,30000    ,35000    ,PANTALONES Y SHORT,0    ,0    
+1,Forrar Pantalón ,45000    ,50000    ,55000    ,PANTALONES Y SHORT,0    ,0    
+1,Bajar pretina ,35000    ,40000    ,45000    ,PANTALONES Y SHORT,0    ,0    
+1,Cambiar elástico cintura ,25000    ,30000    ,35000    ,PANTALONES Y SHORT,0    ,0    
+1,Eliminar pinzas  ,15000    ,20000    ,25000    ,PANTALONES Y SHORT,0    ,0    
+1,Eliminar bolsillos,20000    ,25000    ,30000    ,PANTALONES Y SHORT,0    ,0    
+1,Abertura Pantalón,20000    ,25000    ,30000    ,PANTALONES Y SHORT,0    ,0    
+1,Parche a mano - costura invisible,25000    ,30000    ,35000    ,PANTALONES Y SHORT,0    ,0    
+1,Parche a máquina  - costura invisible,20000    ,25000    ,30000    ,PANTALONES Y SHORT,0    ,0    
+1,Parche pegado,20000    ,25000    ,30000    ,PANTALONES Y SHORT,0    ,0    
+2,Ruedo sin Abertura ,30000    ,35000    ,40000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Ruedo con Abertura ,30000    ,35000    ,40000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Cerrar Abertura ,30000    ,35000    ,40000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Ruedo Mangas,25000    ,30000    ,35000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Ruedo Manga con martillo ,35000    ,40000    ,45000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Achicar Blazer/saco/suéter Completo,45000    ,50000    ,55000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Achicar Cintura ,35000    ,40000    ,45000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,"Achicar Hombros, Sisa o Mangas",30000    ,35000    ,40000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Achicar Hombro y Mangas ,40000    ,45000    ,50000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Achicar hombros y/o mangas de traje,45000    ,50000    ,55000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Achicar solapa,30000    ,35000    ,40000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Agrandar Blazer/saco/suéter (sin tela),45000    ,50000    ,55000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Cambiar forro ,45000    ,50000    ,55000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+2,Cambiar/colocar hombreras,20000    ,25000    ,30000    ,"BLAZERS, SACOS Y SUÉTERES",0    ,0    
+3,Ruedo a Máquina Falda,20000    ,25000    ,30000    ,FALDAS,0    ,0    
+3,Ruedo a Mano Falda,25000    ,30000    ,35000    ,FALDAS,0    ,0    
+3,Ruedo a Mano Forrado Falda,30000    ,35000    ,40000    ,FALDAS,0    ,0    
+3,Ruedo con collareta,30000    ,0    ,0    ,FALDAS,0    ,0    
+3,Achicar Cintura Falda Sin Forro,30000    ,35000    ,40000    ,FALDAS,0    ,0    
+3,Achicar Cadera Falda Sin Forro,30000    ,35000    ,40000    ,FALDAS,0    ,0    
+3,Achicar cadera y cintura falda sin forro,30000    ,35000    ,40000    ,FALDAS,0    ,0    
+3,Achicar Cintura Falda con Forro,25000    ,30000    ,35000    ,FALDAS,0    ,0    
+3,Achicar Cadera Falda con Forro,25000    ,30000    ,35000    ,FALDAS,0    ,0    
+3,Achicar cintura y cadera falda con forro,25000    ,30000    ,35000    ,FALDAS,0    ,0    
+3,Agrandar Cintura Falda (sin tela),20000    ,25000    ,30000    ,FALDAS,0    ,0    
+3,Agrandar Cadera Falda (sin tela),20000    ,25000    ,30000    ,FALDAS,0    ,0    
+3,Agrandar cadera y cintura falda (sin tela),20000    ,25000    ,30000    ,FALDAS,0    ,0    
+3,Cierre normal Falda,15000    ,20000    ,25000    ,FALDAS,0    ,0    
+3,Cierre invisible Falda,20000    ,25000    ,30000    ,FALDAS,0    ,0    
+3,Cierre Normal Falda Forrada,20000    ,25000    ,30000    ,FALDAS,0    ,0    
+3,Cierre Invisible Falda Forrada,25000    ,30000    ,35000    ,FALDAS,0    ,0    
+3,Forrar Falda,30000    ,35000    ,40000    ,FALDAS,0    ,0    
+3,Ruedo palazo con collareta,35000    ,40000    ,45000    ,FALDAS,0    ,0    
+4,Ruedo a Máquina ,20000    ,25000    ,30000    ,VESTIDOS,0    ,0    
+4,Ruedo a Mano ,25000    ,30000    ,35000    ,VESTIDOS,0    ,0    
+4,Ruedo a Mano Vestido Forrado,30000    ,35000    ,40000    ,VESTIDOS,0    ,0    
+4,Ruedo con collareta,35000    ,0    ,0    ,VESTIDOS,0    ,0    
+4,Achicar Vestido completo sin tocar cierre,40000    ,45000    ,50000    ,VESTIDOS,0    ,0    
+4,Achicar Vestido completo tocando cierre,45000    ,50000    ,55000    ,VESTIDOS,0    ,0    
+4,Achicar Cintura Vestido,35000    ,40000    ,45000    ,VESTIDOS,0    ,0    
+4,Achicar sisa (bajo brazo o en hombro),30000    ,35000    ,40000    ,VESTIDOS,0    ,0    
+4,Agrandar Vestido sin tocar cierre (sin tela),40000    ,45000    ,50000    ,VESTIDOS,0    ,0    
+4,Agrandar Vestido tocando cierre (sin tela),45000    ,50000    ,55000    ,VESTIDOS,0    ,0    
+4,Cierre Normal Vestido,20000    ,25000    ,30000    ,VESTIDOS,0    ,0    
+4,Cierre Invisible Vestido,25000    ,30000    ,35000    ,VESTIDOS,0    ,0    
+4,Cierre Normal Vestido Forrado,25000    ,30000    ,35000    ,VESTIDOS,0    ,0    
+4,Cierre Invisible Vestido Forrado,30000    ,35000    ,40000    ,VESTIDOS,0    ,0    
+4,Forrar Vestido,40000    ,45000    ,50000    ,VESTIDOS,0    ,0    
+4,Subir Tirantes Vestidos (Finos),20000    ,25000    ,30000    ,VESTIDOS,0    ,0    
+4,Subir Tirantes Vestidos (Gruesos/Forrados),25000    ,30000    ,35000    ,VESTIDOS,0    ,0    
+4,Colocar tirantes ,20000    ,25000    ,30000    ,VESTIDOS,0    ,0    
+4,Subir Mangas Vestidos,30000    ,35000    ,40000    ,VESTIDOS,0    ,0    
+5,Ruedos ,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,35000    ,0    
+5,Ruedo Mangas ,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,25000    ,0    
+5,Ruedo Mangas Martillo,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,35000    ,0    
+5,Achicar Abrigo / Gabardina Completo,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,50000    ,0    
+5,Achicar Cintura,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,35000    ,0    
+5,"Achicar Hombros, Sisa o Mangas",0    ,0    ,0    ,ABRIGOS Y GABARDINAS,30000    ,0    
+5,Achicar Hombros y Mangas,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,40000    ,0    
+5,Agrandar Abrigo / Gabardina (sin tela),0    ,0    ,0    ,ABRIGOS Y GABARDINAS,45000    ,0    
+5,Cambiar Cuello Abrigo / Gabardina,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,45000    ,0    
+5,Elástico Puños Abrigo / Gabardina,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,20000    ,0    
+5,Elástico Cadera Abrigo / Gabardina,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,30000    ,0    
+5,Forrar Abrigo / Gabardina,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,50000    ,0    
+5,Cierre Chaqueta Abrigo / Gabardina,0    ,0    ,0    ,ABRIGOS Y GABARDINAS,35000    ,0    
+6,Ruedo Camisa / Blusas a máquina,0    ,0    ,0    ,CAMISAS Y BLUSAS,25000    ,0    
+6,Ruedo Camisa / Blusa a mano,0    ,0    ,0    ,CAMISAS Y BLUSAS,30000    ,0    
+6,Ruedo Camisa / Blusa con collareta,0    ,0    ,0    ,CAMISAS Y BLUSAS,35000    ,0    
+6,Puños Camisa /Blusa,0    ,0    ,0    ,CAMISAS Y BLUSAS,20000    ,0    
+6,Hacer Cuello Camisa / Blusa,0    ,0    ,0    ,CAMISAS Y BLUSAS,30000    ,0    
+6,Dar vuelta cuello ,0    ,0    ,0    ,CAMISAS Y BLUSAS,15000    ,0    
+6,Achicar Camisa/Blusa Completa Mujer,0    ,0    ,0    ,CAMISAS Y BLUSAS,40000    ,0    
+6,Achicar Cintura Camisa/Blusa Mujer,0    ,0    ,0    ,CAMISAS Y BLUSAS,30000    ,0    
+6,"Achicar Hombros, Sisa o Mangas Camisa/Blusa Mujer",0    ,0    ,0    ,CAMISAS Y BLUSAS,25000    ,0    
+6,Achicar Hombros y Mangas Camisa/Blusa Mujer,0    ,0    ,0    ,CAMISAS Y BLUSAS,35000    ,0    
+6,Achicar Camisa Completa Caballero,0    ,0    ,0    ,CAMISAS Y BLUSAS,45000    ,0    
+6,Achicar Cintura Camisa Caballero,0    ,0    ,0    ,CAMISAS Y BLUSAS,35000    ,0    
+6,"Achicar Hombros, Sisa o Mangas Camisa Caballero",0    ,0    ,0    ,CAMISAS Y BLUSAS,30000    ,0    
+6,Achicar Hombros y Mangas Camisa Caballero,0    ,0    ,0    ,CAMISAS Y BLUSAS,40000    ,0    
+6,Agrandar Camisa / Blusa (sin tela),0    ,0    ,0    ,CAMISAS Y BLUSAS,25000    ,0    
+6,Agrandar Hombros Camisa / Blusa (sin tela),0    ,0    ,0    ,CAMISAS Y BLUSAS,25000    ,0    
+6,Cortar o sacar manga Camisa / Blusa a máquina,0    ,0    ,0    ,CAMISAS Y BLUSAS,20000    ,0    
+6,Cortar o sacar manga Camisa / Blusa con collareta,0    ,0    ,0    ,CAMISAS Y BLUSAS,30000    ,0    
+6,Ruedo mangas Camisa / Blusa con collareta,0    ,0    ,0    ,CAMISAS Y BLUSAS,30000    ,0    
+6,Hacer Abertura Camisa / Blusa,0    ,0    ,0    ,CAMISAS Y BLUSAS,20000    ,0    
+7,Goma para cubre cama,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,20000    ,0    
+7,Ruedo de sábana h/ de 1 plaza,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,20000    ,0    
+7,Ruedo de sábana de 1 plaza y media,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,30000    ,0    
+7,Ruedo de sábana de 2 plazas,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,40000    ,0    
+7,Ruedo de sábana king,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,50000    ,0    
+7,Agujeros/remiendos,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,10000    ,0    
+7,Achicar,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,20000    ,0    
+7,Agrandar (más tela sujeto a presupuesto),0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,20000    ,0    
+7,Ruedo cortina ancha a máquina/ ruedo p/ tubo ,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,40000    ,0    
+7,Ruedo cortina angosta a máquina/ ruedo p/ tubo ,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,20000    ,0    
+7,Cortina Metro Costura Máquina.(Sujeto a Ppto.),0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,0    ,0    
+7,Cortina Metro Costura Mano. (sujeto a Ppto.),0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,0    ,0    
+7,Colocación de rueditas,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,500    ,0    
+7,Sábana,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,0    ,0    
+7,Cubre colchón con goma,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,0    ,0    
+7,Ruedo p/ individuales,0    ,0    ,0    ,CORTINAS Y BLANQUERÍA,25000    ,0    
+8,Transformar traje de baño entero en 2 piezas,0    ,0    ,0    ,LENCERÍA Y BIKINIS,30000    ,0    
+8,Trajes de baño disminuir talla,0    ,0    ,0    ,LENCERÍA Y BIKINIS,25000    ,0    
+8,Bikini ( Parte inferior ) transformar a hilo,0    ,0    ,0    ,LENCERÍA Y BIKINIS,25000    ,0    
+8,Traje de baño bordar con mostacilla,0    ,0    ,0    ,LENCERÍA Y BIKINIS,30000    ,0    
+8,Pareo flecar y colocar tiras,0    ,0    ,0    ,LENCERÍA Y BIKINIS,30000    ,0    
+8,Pareo cambiar forma y colocar cuencas,0    ,0    ,0    ,LENCERÍA Y BIKINIS,35000    ,0    
+8,Transformar vestido en pareo,0    ,0    ,0    ,LENCERÍA Y BIKINIS,35000    ,0    
+9,Achicar vestido completo sin pedrería,0    ,0    ,0    ,VESTIDOS DE FIESTA,45000    ,0    
+9,Achicar cintura y/o cadera vestido sin pedredría,0    ,0    ,0    ,VESTIDOS DE FIESTA,40000    ,0    
+9,Achicar vestido completo con pedrería o encaje o lentejuelas,0    ,0    ,0    ,VESTIDOS DE FIESTA,55000    ,0    
+9,Achicar cintura y/o cadera vestido con pedrería o encaje o lentejuelas,0    ,0    ,0    ,VESTIDOS DE FIESTA,50000    ,0    
+9,Achicar pechera sin pedería,0    ,0    ,0    ,VESTIDOS DE FIESTA,40000    ,0    
+9,"Achicar pechera, con pedrería o encaje o lentejuelas",0    ,0    ,0    ,VESTIDOS DE FIESTA,45000    ,0    
+9,Achicar sisa (bajo brazo o en el hombro) sin pedrería,0    ,0    ,0    ,VESTIDOS DE FIESTA,35000    ,0    
+9,"Achicar sisa (bajo brazo o en el hombro), con pedrería o encaje o lentejuelas",0    ,0    ,0    ,VESTIDOS DE FIESTA,40000    ,0    
+9,Agrandar o alargar vestido (sin tela),0    ,0    ,0    ,VESTIDOS DE FIESTA,40000    ,0    
+9,Cierre vestido con/sin Pedrería ,0    ,0    ,0    ,VESTIDOS DE FIESTA,40000    ,0    
+9,Cierre Invisible Vestido con/sin Pedrería ,0    ,0    ,0    ,VESTIDOS DE FIESTA,45000    ,0    
+9,Subir tirantes forrados con pedrería o encaje o lentejuelas,0    ,0    ,0    ,VESTIDOS DE FIESTA,30000    ,0    
+9,Subir tirantes,0    ,0    ,0    ,VESTIDOS DE FIESTA,20000    ,0    
+9,Colocar tirantes sin pedredría,0    ,0    ,0    ,VESTIDOS DE FIESTA,20000    ,0    
+9,Colocar tirantes con pedrería o encaje o lentejuelas,0    ,0    ,0    ,VESTIDOS DE FIESTA,25000    ,0    
+9,Ruedo Plizado con overlock,0    ,0    ,0    ,VESTIDOS DE FIESTA,35000    ,0    
+9,Ruedo vestido/falda - recto o tubo,0    ,0    ,0    ,VESTIDOS DE FIESTA,40000    ,0    
+9,"Ruedo vestido/falda - recto o tubo, con pedería o encaje o lentejuelas",0    ,0    ,0    ,VESTIDOS DE FIESTA,45000    ,0    
+9,Ruedo vestido/falda - campana o semicampana,0    ,0    ,0    ,VESTIDOS DE FIESTA,50000    ,0    
+9,Ruedo vestido/falda - semicampana con collareta,0    ,0    ,0    ,VESTIDOS DE FIESTA,65000    ,0    
+9,Ruedo vestido/falda - campana con collareta,0    ,0    ,0    ,VESTIDOS DE FIESTA,70000    ,0    
+9,"Ruedo vestido/falda - campana o semicampana, con pedería o encaje o lentejuelas",0    ,0    ,0    ,VESTIDOS DE FIESTA,55000    ,0    
+9,Forrar o poner tul vestido/falda - recto o tubo,0    ,0    ,0    ,VESTIDOS DE FIESTA,35000    ,0    
+9,Forrar o poner tul vestido/falda - campana o semicampana,0    ,0    ,0    ,VESTIDOS DE FIESTA,40000    ,0    
+10,Pegar Botón (por unidad),0    ,0    ,0    ,ESPECIALES,2000    ,0    
+10,Pegar botón jean (por unidad),0    ,0    ,0    ,ESPECIALES,10000    ,0    
+10,Pegar Ganchos (por unidad),0    ,0    ,0    ,ESPECIALES,5000    ,0    
+10,Cambiar tira de ganchos faja,0    ,0    ,0    ,ESPECIALES,20000    ,0    
+10,Sello (pegado de etiqueta - por unidad),0    ,0    ,0    ,ESPECIALES,5000    ,0    
+10,Ojal a mano (por unidad),0    ,0    ,0    ,ESPECIALES,2500    ,0    
+10,Ojal a máquina (por unidad),0    ,0    ,0    ,ESPECIALES,2000    ,0    
+10,Faja Pequeña Estrechar ,0    ,0    ,0    ,ESPECIALES,30000    ,0    
+10,Faja Larga Estrechar,0    ,0    ,0    ,ESPECIALES,35000    ,0    
+10,Cierre Faja,0    ,0    ,0    ,ESPECIALES,20000    ,0    
+10,Bolso de jean,0    ,0    ,0    ,ESPECIALES,25000    ,0    
+10,Remiendos varios/ Refuerzo de costura,0    ,0    ,0    ,ESPECIALES,10000    ,0    
+10,Colocar tazas,0    ,0    ,0    ,ESPECIALES,20000    ,0    
+10,Servicio Express en todo tipo de prendas de Tela Fina (adicionar al costo),0    ,0    ,0    ,ESPECIALES,5000    ,0    
+10,Servicio Express en todo tipo de prendas de Jeans (adicionar al costo),0    ,0    ,0    ,ESPECIALES,10000    ,0    
+10,Servicio Express en todo tipo de prendas y gamuza (adicionar al costo),0    ,0    ,0    ,ESPECIALES,15000    ,0    
+10,Servicio Express en todo tipo de prendas de Fiesta (adicional al costo),0    ,0    ,0    ,ESPECIALES,10000    ,0    
+10,"Servicio compra de tela, randas, apliques, etc. (excepto botón, cierre o goma)",0    ,0    ,0    ,ESPECIALES,10000    ,0    
+11,Subir pretina (sin tela),35000    ,40000    ,45000    ,TRANSFORMACIONES,0    ,45000    
+11,Subir pretina (sin tela),40000    ,45000    ,50000    ,TRANSFORMACIONES,0    ,15000    
+11,Subir pretina (sin tela),20000    ,25000    ,30000    ,TRANSFORMACIONES,0    ,30000    
+11,Subir pretina (sin tela),30000    ,35000    ,40000    ,TRANSFORMACIONES,0    ,40000    
+11,Subir pretina (sin tela),35000    ,40000    ,45000    ,TRANSFORMACIONES,0    ,45000    
+11,Subir pretina (sin tela),20000    ,25000    ,30000    ,TRANSFORMACIONES,0    ,30000    
+11,Subir pretina (sin tela),0    ,0    ,0    ,TRANSFORMACIONES,180000    ,0    
+11,Subir pretina (sin tela),30000    ,35000    ,40000    ,TRANSFORMACIONES,0    ,40000    
+11,Subir pretina (sin tela),35000    ,40000    ,45000    ,TRANSFORMACIONES,0    ,45000    
+11,Subir pretina (sin tela),40000    ,45000    ,50000    ,TRANSFORMACIONES,0    ,55000    
+11,Subir pretina (sin tela),55000    ,60000    ,65000    ,TRANSFORMACIONES,0    ,65000    
+11,Subir pretina (sin tela),30000    ,35000    ,40000    ,TRANSFORMACIONES,0    ,40000    
+11,Subir pretina (sin tela),35000    ,40000    ,45000    ,TRANSFORMACIONES,0    ,45000    
+11,Subir pretina (sin tela),30000    ,35000    ,40000    ,TRANSFORMACIONES,0    ,40000    
+11,Subir pretina (sin tela),35000    ,40000    ,45000    ,TRANSFORMACIONES,0    ,45000    
+11,Subir pretina (sin tela),20000    ,25000    ,30000    ,TRANSFORMACIONES,0    ,30000    
+11,Subir pretina (sin tela),25000    ,30000    ,35000    ,TRANSFORMACIONES,0    ,0    
+11,Subir pretina (sin tela),35000    ,40000    ,45000    ,TRANSFORMACIONES,0    ,0    

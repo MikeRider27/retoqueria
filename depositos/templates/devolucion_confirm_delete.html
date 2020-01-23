@@ -1,0 +1,15 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+	<h2>Esta seguro que desea eliminar el registro de devolucion?</h2><br>
+	<p>Fecha: {{ object.devolucion.fecha }} </p><br>
+	<p>Deposito: {{ object.deposito }}</p><br>
+	<p>Material: {{ object.detalle_retiro.material }}</p><br>
+	<p>Cantidad: {{ object.cantidad }}</p><br>
+
+	<button type="submit" class="btn btn-success">Aceptar</button>
+	<button type="button" onclick="window.history.back(); return false;" class="btn btn-danger">Cancelar</button>
+</form>
+{% endblock %}
+

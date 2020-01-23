@@ -1,0 +1,15 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div>
+	<form action="" method="post">{% csrf_token %}
+		<div align="center">
+
+			<h2>{{ mensaje }}</h2>
+			<br>
+			<button type="button" onclick="window.history.back(); return false;" class="btn btn-danger">Volver</button>
+
+		</div>
+	</form>
+</div>
+{% endblock %}

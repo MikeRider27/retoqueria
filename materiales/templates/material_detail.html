@@ -1,0 +1,63 @@
+{% extends "admin/base_site.html" %}
+{% load humanize %}
+
+{% block content %}
+<h1>Datos del Material</h1>
+<table class="table table-striped table-filter" summary="Datos del Material.">
+	<tbody>
+		<tr>
+			<th scope="row"> ID </th>
+			<td> {{ object.id }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Descripcion </th>
+			<td> {{ object.descripcion }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Unidad de medida </th>
+			<td> {{ object.unidad_de_medida }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Categoria </th>
+			<td> {{ object.categoria }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Stock actual </th>
+			<td> {{ object.stock_actual|floatformat:"0"|intcomma|default_if_none:"&nbsp;" }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Stock minimo </th>
+			<td> {{ object.stock_minimo|floatformat:"0"|intcomma|default_if_none:"&nbsp;" }} </td>
+		</tr>
+
+	</tbody>
+</table>
+
+{% if object.proveedores.all %}
+<table id="result_list" class="table table-striped table-bordered table-hover table-condensed">
+	<caption><h1>Proveedores</h1></caption>
+
+	<thead>
+		<tr>
+			<th>Nombre</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for proveedor in object.proveedores.all %}
+		<tr>
+			<td>{{ proveedor }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endif %}
+
+<button type="button" class="btn btn-primary" onclick="window.history.back(); return false;">Volver</button>
+
+{% endblock %}

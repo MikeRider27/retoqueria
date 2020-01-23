@@ -1,0 +1,141 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n admin_static %}
+{% load my_tags %}
+
+{% block extrastyle %}
+{% endblock %}
+
+{% block extrajs %}	
+{% endblock %}
+
+{% block content %}
+	<form class="form" method="get">
+		<h1>Lista de Unidades de Medida</h1>
+		<center>
+			<dl>
+				<table class="table-filter table table-bordered table-stripped">
+					<tbody>
+						<tr>
+							<th style="vertical-align:middle">
+								<strong> Buscar:</strong>
+							</th>
+							<td style="vertical-align:middle">
+								<input type="text" class="search-query" placeholder="Nombre.." name="q" value="{{ q }}">
+							</td>
+
+							<th style="border-top :3px solid white; border-right :3px solid white; border-bottom :3px solid white;">
+								<a class="btn btn-info" href="/admin/materiales/unidaddemedida/" title="Limpiar Filtros">
+									<i class="fa fa-undo"></i>
+								</a>
+								<input type="submit" value="Buscar" class="btn btn-success" hidden="hidden" style="display: none">
+							</th>
+						</tr>
+					</tbody>
+				</table>
+			</dl>
+		</center>
+		
+		<div id="next_button" align="right">
+			{% if perms.materiales.add_unidaddemedida %}
+			<button type="button" class="btn btn-primary" onclick="location.href='/admin/materiales/unidaddemedida/add/';" title="Agregar Unidad de Medida">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+			{% endif %}
+
+			<!--
+			<button onclick="this.form.submit();" class="btn btn-success" name="excel" value="excel" type="submit" title="Exportar a Excel">
+				<i class="fa fa-file-excel-o"></i>
+			</button>
+			--> 
+		</div>
+	</form>
+
+
+	<br/>
+
+	<div align="center">
+		<table id="result_list" class="table table-striped table-filter">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>S&iacutembolo</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for unidaddemedida in object_list %}
+				<tr>
+					<td>{{ unidaddemedida.nombre }}</td>
+					<td>{{ unidaddemedida.simbolo}}</td>
+					<td>
+						{% if perms.materiales.change_unidaddemedida %}
+						<button type="button" class="btn btn-warning btn-xs" onclick="location.href='/admin/materiales/unidaddemedida/{{ unidaddemedida.id }}/';" title="Editar">
+							<i class="fa fa-pencil"></i>
+						</button>
+						{% endif %}
+
+						{% if perms.materiales.delete_unidaddemedida %}
+						<button type="button" class="btn btn-danger btn-xs" onclick="location.href='/admin/materiales/unidaddemedida/{{ unidaddemedida.id }}/delete/';" title="Borrar">
+							<i class="fa fa-minus"></i>
+						</button>
+						{% endif %}
+
+
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	{% if is_paginated %}
+	<table class="table">
+		<td>
+			<center>
+				<ul class="pagination pagination-sm">
+					{% if page_obj.has_previous %}
+					<li class="previous">
+						<a href="/admin/materiales/unidaddemedida/?page={{ page_obj.previous_page_number }}&q={{ q }}">
+							<span aria-hidden="true">&larr;</span> Primera
+						</a>
+					</li>
+
+					<li>
+						<a href="/admin/materiales/unidaddemedida/?page={{ page_obj.previous_page_number }}&q={{ q }}">
+							Anterior
+						</a>
+					</li> 	
+					{% endif %}
+
+					{% for page in page_obj.paginator.page_range|paginator_delimiter:page_obj.number %}
+					<li>
+						<a {% if page == page_obj.number %} class="active" style="background-color:#DD4814;color:white;" {% endif %} href="/admin/materiales/unidaddemedida/?page={{ page }}&q={{ q }}">
+							{{ page }}
+						</a>
+					</li>
+					{% endfor %}
+
+					{% if page_obj.has_next %}
+					<li>
+						<a href="/admin/materiales/unidaddemedida/?page={{ page_obj.next_page_number }}&q={{ q }}">
+							Siguiente
+						</a>
+					</li>
+					
+					<li class="next">
+						<a href="/admin/materiales/unidaddemedida/?page={{ page_obj.paginator.num_pages}}&q={{ q }}">
+							&Uacute;ltima <span aria-hidden="true">&rarr;</span>
+						</a>
+					</li>
+					{% endif %}
+
+				</ul>
+			</center>
+		</td>
+		<th>
+			Pag. {{ page_obj.number }}/{{ page_obj.paginator.num_pages }} 
+		</th>
+	</table>
+	{% endif %}
+{% endblock %}

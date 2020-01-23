@@ -1,0 +1,187 @@
+{% extends 'admin/base_site.html'%}
+{% load i18n admin_static %}
+{% load my_tags %}
+{% load humanize %}
+
+{% block extrastyle %}
+	<link rel="stylesheet" href="{% static 'chosen/chosen.css' %}">
+	<link rel="stylesheet" href="{% static 'chosen/docsupport/prism.css' %}">
+{% endblock %}
+
+{% block extrajs %}
+<script src="{% static 'chosen/chosen.jquery.js' %}"></script>
+<script src="{% static 'chosen/docsupport/prism.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/jquery.maskedinput.min.js' %}"></script>
+
+<script type="text/javascript">
+	$(".chosen-select").chosen({
+		disable_search_threshold: 0,
+		no_results_text: "Sin resultados..",
+		width: "300px",
+		allow_single_deselect: true
+	});
+	$('.chosen-select').trigger('chosen:updated');
+
+    jQuery(function($) {
+        $(".date").mask("99/99/9999",{placeholder:"dd/mm/aaaa"});
+    });
+
+
+</script>
+{% endblock %}
+
+{% block content %}
+	<form class="form" method="get">
+		<h1>Liquidaciones</h1>
+		<center>
+			<dl>
+				<table class="table-filter table table-bordered table-stripped">
+					<tbody>
+						<tr>
+							<th style="vertical-align:middle">
+								<strong> Numero:</strong>
+							</th>
+							<td style="vertical-align:middle">
+								<input type="text" class="search-query" placeholder="99999" name="q" value="{{ q }}">
+							</td>
+
+							<th style="vertical-align:middle">
+								<strong> Modista:</strong>
+							</th>
+							<td style="vertical-align:middle">
+								<select class="chosen-select" data-placeholder="Seleccione una modista.." name="modista_id" value="{{ modista_id }}" onchange="this.form.submit();">
+									<option value=""></option>
+									{% for modista in modistas %}
+                                        <option {% if modista.pk == modista_id and modista.activo %} selected {% endif %} value="{{ modista.id }}">{{ modista }}</option>
+									{% endfor %}
+								</select>
+							</td>
+						</tr>
+
+						<tr>
+
+							<th style="vertical-align:middle">
+								<strong> Fecha desde:</strong>
+							</th>
+							<td style="vertical-align:middle">
+								<input type="text" class="date" placeholder="dd/mm/aaaa" name="fecha_desde" value="{{ fecha_desde }}">
+							</td>
+
+
+							<th style="vertical-align:middle">
+								<strong> Fecha hasta:</strong>
+							</th>
+							<td style="vertical-align:middle" colspan="3">
+								<input type="text" class="date" placeholder="dd/mm/aaaa" name="fecha_hasta" value="{{ fecha_hasta }}">
+							</td>
+						</tr>
+
+						<tr>
+							<th style="border-top :3px solid white; border-right :3px solid white; border-bottom :3px solid white;">
+								<a class="btn btn-info" href="/admin/funcionarios/liquidacion/" title="Limpiar Filtros">
+									<i class="fa fa-undo"></i>
+								</a>
+								<input type="submit" value="Buscar" class="btn btn-success" hidden="hidden" style="display: none">
+							</th>
+						</tr>
+					</tbody>
+				</table>
+			</dl>
+		</center>
+
+		<div id="next_button" align="right">
+			<button type="button" class="btn btn-primary" onclick="location.href='/admin/funcionarios/liquidacion/add';" title="Agregar liquidación">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		</div>
+	</form>
+
+	<div align="center">
+		<table id="result_list" class="table table-striped table-filter">
+			<thead>
+				<tr>
+					<th>Numero</th>
+					<th>Fecha </th>
+					<th>Modista</th>
+                    <th>Total</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for liquidacion in object_list %}
+					<td>{{ liquidacion.id|separador_miles }}</td>
+					<td>{{ liquidacion.fecha }}</td>
+                    <td>{{ liquidacion.modista.nombres }}</td>
+                    <td>{{ liquidacion.total.to_integral | intcomma | default_if_none:"&nbsp;"  }}</td>
+
+					<td>
+						<button type="button" class="btn btn-warning btn-xs" onclick="location.href='/admin/funcionarios/liquidacion/{{ liquidacion.id }}';" title="Editar">
+							<i class="fa fa-pencil"></i>
+						</button>
+
+						<button type="button" class="btn btn-danger btn-xs" onclick="location.href='/admin/funcionarios/liquidacion/{{ liquidacion.id }}/delete/';" title="Borrar">
+							<i class="fa fa-minus"></i>
+						</button>
+                        <!--
+						<button type="button" class="btn btn-success btn-xs" onclick="location.href='/admin/funcionarios/liquidacion/excel/{{ ordendetrabajo.id }}';" title="Reporte">
+							<i class="fa fa-file-excel-o"></i>
+						</button>-->
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	{% if is_paginated %}
+	<table class="table">
+		<td>
+			<center>
+				<ul class="pagination pagination-sm">
+					{% if page_obj.has_previous %}
+					<li class="previous">
+						<a href="/admin/funcionarios/liquidacion/?page={{ page_obj.previous_page_number }}&q={{ q }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}&modista_id={{ modista_id }}">
+							<span aria-hidden="true">&larr;</span> Primera
+						</a>
+					</li>
+
+					<li>
+						<a href="/admin/funcionarios/liquidacion/?page={{ page_obj.previous_page_number }}&q={{ q }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}&modista_id={{ modista_id }}">
+							Anterior
+						</a>
+					</li>
+					{% endif %}
+
+					{% for page in page_obj.paginator.page_range|paginator_delimiter:page_obj.number %}
+					<li>
+						<a {% if page == page_obj.number %} class="active" style="background-color:#DD4814;color:white;" {% endif %} href="/admin/funcionarios/liquidacion/?page={{ page }}&q={{ q }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}&modista_id={{ modista_id }}">
+							{{ page }}
+						</a>
+					</li>
+					{% endfor %}
+
+					{% if page_obj.has_next %}
+					<li>
+						<a href="/admin/funcionarios/liquidacion/?page={{ page_obj.next_page_number }}&q={{ q }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}&modista_id={{ modista_id }}">
+							Siguiente
+						</a>
+					</li>
+
+					<li class="next">
+						<a href="/admin/funcionarios/liquidacion/?page={{ page_obj.paginator.num_pages}}&q={{ q }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}&modista_id={{ modista_id }}">
+							&Uacute;ltima <span aria-hidden="true">&rarr;</span>
+						</a>
+					</li>
+					{% endif %}
+
+				</ul>
+			</center>
+		</td>
+		<th>
+			Pag. {{ page_obj.number }}/{{ page_obj.paginator.num_pages }}
+		</th>
+	</table>
+	{% endif %}
+{% endblock %}

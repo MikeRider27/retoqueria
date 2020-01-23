@@ -1,0 +1,30 @@
+{% load i18n admin_static %}
+{% if cl.search_fields %}
+<div id="toolbar"><form id="changelist-search" action="" method="get">
+<div><!-- DIV needed for valid HTML -->
+
+			<table class="table-filter table table-bordered table-stripped">
+			    <tbody>
+				    <tr>
+				        <th style="vertical-align:middle">
+				            <strong> Buscar:</strong>
+				        </th>
+				        <td style="vertical-align:middle">
+							<input type="text" id="id_buscar" class="search-query" name="{{ search_var }}" value="{{ cl.query }}">
+						</td>
+
+                        <th style="border-top :3px solid white; border-right :3px solid white; border-bottom :3px solid white;">
+                            <input type="submit" value="Buscar" class="btn btn-success" hidden="hidden" style="display: none">
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+{% if show_result_count %}
+    <span class="small quiet">{% blocktrans count counter=cl.result_count %}{{ counter }} result{% plural %}{{ counter }} results{% endblocktrans %} (<a href="?{% if cl.is_popup %}_popup=1{% endif %}">{% if cl.show_full_result_count %}{% blocktrans with full_result_count=cl.full_result_count %}{{ full_result_count }} total{% endblocktrans %}{% else %}{% trans "Show all" %}{% endif %}</a>)</span>
+{% endif %}
+{% for pair in cl.params.items %}
+    {% ifnotequal pair.0 search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>{% endifnotequal %}
+{% endfor %}
+</div>
+</form></div>
+{% endif %}

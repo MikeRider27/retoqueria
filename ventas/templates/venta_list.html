@@ -1,0 +1,219 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n admin_static %}
+{% load my_tags %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'chosen/chosen.css' %}">
+    <link rel="stylesheet" href="{% static 'chosen/docsupport/prism.css' %}">
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'chosen/chosen.jquery.js' %}"></script>
+    <script src="{% static 'chosen/docsupport/prism.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.maskedinput.min.js' %}"></script>
+    <script type="text/javascript">
+        $(".chosen-select").chosen({
+            disable_search_threshold: 0,
+            no_results_text: "Sin resultados..",
+            width: "300px",
+            allow_single_deselect: true
+        });
+        $('.chosen-select').trigger('chosen:updated');
+    </script>
+    <script>
+        jQuery(function($) {
+            $("#id_numero_de_factura").mask("999-999-9999?99999");
+            $(".date").mask("99/99/9999",{placeholder:"dd/mm/aaaa"});
+        });  
+    </script>
+{% endblock %}
+
+{% block content %}
+    <form class="form" method="get">
+        <h1>Lista de ventas</h1>
+        <center>
+            <dl>
+                <table class="table-filter table table-bordered table-stripped">
+                    <tbody>
+                    <tr>
+
+                        <th style="vertical-align:middle">
+                            <strong> Numero de Factura:</strong>
+                        </th>
+                        <td style="vertical-align:middle">
+                            <input type="text"   id="id_numero_de_factura" class="search-query" placeholder="Numero de Factura.." name="q" value="{{ q }}">
+                        </td>
+
+
+
+                        <th style="vertical-align:middle">
+                            <strong> OT:</strong>   
+                        </th>
+                        <td style="vertical-align:middle">
+                            <input type="text" class="search-query" placeholder="Orden de trabajo.." name="orden_de_trabajo" value="{{ orden_de_trabajo }}">
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <th style="vertical-align:middle">
+                            <strong> Cliente:</strong>
+                        </th>
+                        <td style="vertical-align:middle" colspan="3">
+                            <select class="chosen-select" data-placeholder="Seleccione un cliente.." name="cliente_id" value="{{ cliente_id }}" onchange="this.form.submit();">
+                                <option value=""></option>
+                                {% for cliente in clientes %}
+                                    <option {% if cliente.pk == cliente_id %} selected {% endif %} value="{{ cliente.id }}">{{ cliente }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <th style="vertical-align:middle">
+                            <strong> Fecha desde:</strong>   
+                        </th>
+                        <td style="vertical-align:middle">
+                            <input type="text" class="date" placeholder="dd/mm/aaaa" name="fecha_desde" value="{{ fecha_desde }}">
+                        </td>
+
+
+                        <th style="vertical-align:middle">
+                            <strong> Fecha hasta:</strong>   
+                        </th>
+                        <td style="vertical-align:middle">
+                            <input type="text" class="date" placeholder="dd/mm/aaaa" name="fecha_hasta" value="{{ fecha_hasta }}">
+                        </td>
+
+
+                        <th style="border-top :3px solid white; border-right :3px solid white; border-bottom :3px solid white;">
+                            <a class="btn btn-info" href="/admin/ventas/venta/" title="Limpiar Filtros">
+                                <i class="fa fa-undo"></i>
+                            </a>
+                            <input type="submit" value="Buscar" class="btn btn-success" hidden="hidden" style="display: none">
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+            </dl>
+        </center>
+
+        <div id="next_button" align="right">
+
+            {% if perms.ventas.add_venta %}
+
+            <button type="button" class="btn btn-primary" onclick="location.href='/admin/ventas/venta/add/';" title="Agregar venta">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+
+            {% endif %}
+
+        </div>
+    </form>
+
+
+    <br/>
+
+    <div align="center">
+        <table id="result_list" class="table table-striped table-filter">
+            <thead>
+            <tr>
+                <th>Factura</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Condicion</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for venta in object_list %}
+                <tr>
+                    <td>{{ venta.factura }}</td>
+                    <td>{{ venta.cliente }}</td>
+                    <td>{{ venta.fecha }}</td>
+                    <td>{{ venta.get_condicion_display }}</td>
+                    
+                    <td>
+                        {% if perms.ventas.change_venta %}
+                            <button type="button" class="btn btn-warning btn-xs" onclick="location.href='/admin/ventas/venta/{{ venta.id }}/';" title="Editar">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        {% endif %}
+
+                        {% if perms.ventas.delete_venta %}
+                            <button type="button" class="btn btn-danger btn-xs" onclick="location.href='/admin/ventas/venta/{{ venta.id }}/delete/';" title="Borrar">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        {% endif %}
+
+
+                        <button type="button" class="btn btn-info btn-xs" onclick="location.href='/admin/ventas/venta/{{ venta.id }}/detail/';" title="Detalle">
+                            <i class="fa fa-list-ol"></i>
+                        </button>
+
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if is_paginated %}
+        <table class="table">
+            <td>
+                <center>
+                    <ul class="pagination pagination-sm">
+                        {% if page_obj.has_previous %}
+                            <li class="previous">
+                                <a href="/admin/ventas/venta/?page={{ page_obj.previous_page_number }}&q={{ q }}&cliente_id={{ cliente_id }}&orden_de_trabajo={{ orden_de_trabajo }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}">
+                                    <span aria-hidden="true">&larr;</span> Primera
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/admin/ventas/venta/?page={{ page_obj.previous_page_number }}&q={{ q }}&cliente_id={{ cliente_id }}&orden_de_trabajo={{ orden_de_trabajo }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}">
+                                    Anterior
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% for page in page_obj.paginator.page_range|paginator_delimiter:page_obj.number %}
+                            <li>
+                                <a {% if page == page_obj.number %} class="active" style="background-color:#DD4814;color:white;" {% endif %} href="/admin/ventas/venta/?page={{ page }}&q={{ q }}&cliente_id={{ cliente_id }}&orden_de_trabajo={{ orden_de_trabajo }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}">
+                                    {{ page }}
+                                </a>
+                            </li>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li>
+                                <a href="/admin/ventas/venta/?page={{ page_obj.next_page_number }}&q={{ q }}&cliente_id={{ cliente_id }}&orden_de_trabajo={{ orden_de_trabajo }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}">
+                                    Siguiente
+                                </a>
+                            </li>
+
+                            <li class="next">
+                                <a href="/admin/ventas/venta/?page={{ page_obj.paginator.num_pages}}&q={{ q }}&cliente_id={{ cliente_id }}&orden_de_trabajo={{ orden_de_trabajo }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}">
+                                    &Uacute;ltima <span aria-hidden="true">&rarr;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </center>
+            </td>
+            <th>
+                Pag. {{ page_obj.number }}/{{ page_obj.paginator.num_pages }}
+            </th>
+        </table>
+    {% endif %}
+
+
+
+{% endblock %}

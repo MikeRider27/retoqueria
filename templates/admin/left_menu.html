@@ -1,0 +1,409 @@
+<ul class="nav" id="side-menu">
+	<li>
+		<a class="active" href="/admin/"><i class="fa fa-home fa-fw"></i> INICIO </a>
+	</li>                      
+
+{% if '/admin/auth' in request.path or '/admin/sistema' in request.path  %}
+	{% if perms.auth.add_user or perms.auth.change_user or perms.auth.delete_user %}
+	<li>
+		<a href="#">USUARIOS<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.auth.add_user %}
+			<li>
+				<a href="/admin/auth/user/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+			
+			<li>
+				<a href="/admin/auth/user/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+	
+	{% if perms.auth.add_group or perms.auth.change_group or perms.auth.delete_group %}
+	<li>
+		<a href="#">GRUPOS<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.auth.add_group %}
+			<li>
+				<a href="/admin/auth/group/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+	
+			<li>
+				<a href="/admin/auth/group/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+
+
+{% elif '/admin/clientes' in request.path %}
+
+	{% if perms.clientes.add_cliente %}
+	<li>
+		<a href="/admin/clientes/cliente/add/">AGREGAR</a>
+	</li>
+	{% endif %}
+	
+	{% if perms.clientes.add_cliente or perms.clientes.change_cliente or perms.clientes.delete_cliente %}
+	<li>
+		<a href="/admin/clientes/cliente/">LISTAR</a>
+	</li>
+	{% endif %}
+	
+
+{% elif '/admin/proveedores' in request.path %}
+
+	{% if perms.proveedores.add_proveedor %}
+	<li>
+		<a href="/admin/proveedores/proveedor/add/">AGREGAR</a>
+	</li>
+	{% endif %}
+	
+	{% if perms.proveedores.add_proveedor or perms.proveedores.change_proveedor or perms.proveedores.delete_proveedor %}
+	<li>
+		<a href="/admin/proveedores/proveedor/">LISTAR</a>
+	</li>
+	{% endif %}
+	
+
+{% elif '/admin/funcionarios' in request.path %}
+
+	{% if perms.funcionarios.add_funcionario %}
+	<li>
+		<a href="/admin/funcionarios/funcionario/add/">AGREGAR</a>
+	</li>
+	{% endif %}
+	
+	{% if perms.funcionarios.add_funcionario or perms.funcionarios.change_funcionario or perms.funcionarios.delete_funcionario %}
+	<li>
+		<a href="/admin/funcionarios/funcionario/">LISTAR</a>
+	</li>
+	{% endif %}
+
+    {% if perms.funcionarios.add_funcionario or perms.funcionarios.change_funcionario or perms.funcionarios.delete_funcionario %}
+	<li>
+		<a href="/admin/funcionarios/liquidacion/">LIQUIDACION</a>
+	</li>
+	{% endif %}
+
+
+{% elif '/admin/materiales' in request.path or '/admin/depositos' in request.path  %}
+
+	{% if perms.materiales.add_unidaddemedida or perms.materiales.change_unidaddemedida or perms.materiales.delete_unidaddemedida %}
+	<li>
+		<a href="#">UNIDADES DE MEDIDA<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.materiales.add_unidaddemedida %}
+			<li>
+				<a href="/admin/materiales/unidaddemedida/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+			
+			<li>
+				<a href="/admin/materiales/unidaddemedida/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+	
+	{% if perms.materiales.add_categoriadematerial or perms.materiales.change_categoriadematerial or perms.materiales.delete_categoriadematerial %}
+	<li>
+		<a href="#">CATEGORIAS DE MATERIAL<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.materiales.add_categoriadematerial %}
+			<li>
+				<a href="/admin/materiales/categoriadematerial/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+	
+			<li>
+				<a href="/admin/materiales/categoriadematerial/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+
+	{% if perms.materiales.add_material or perms.materiales.change_material or perms.materiales.delete_material %}
+	<li>
+		<a href="#">MATERIALES<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.materiales.add_material %}
+			<li>
+				<a href="/admin/materiales/material/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+	
+			<li>
+				<a href="/admin/materiales/material/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+
+	{% if perms.depositos.add_deposito or perms.depositos.change_deposito or perms.depositos.delete_deposito %}
+	<li>
+		<a href="#">DEPOSITOS<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.depositos.add_deposito %}
+			<li>
+				<a href="/admin/depositos/deposito/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+			
+			<li>
+				<a href="/admin/depositos/deposito/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+
+
+	{% if perms.depositos.add_alta or perms.depositos.change_alta or perms.depositos.delete_alta %}
+	<li>
+		<a href="#">ALTAS<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.depositos.add_alta %}
+			<li>
+				<a href="/admin/depositos/alta/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+	
+			<li>
+				<a href="/admin/depositos/alta/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+
+	{% if perms.depositos.add_baja or perms.depositos.change_baja or perms.depositos.delete_baja %}
+	<li>
+		<a href="#">BAJAS<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.depositos.add_baja %}
+			<li>
+				<a href="/admin/depositos/baja/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+	
+			<li>
+				<a href="/admin/depositos/baja/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+
+
+	{% if perms.depositos.add_retiro or perms.depositos.change_retiro or perms.depositos.delete_retiro %}
+	<li>
+		<a href="#">RETIROS<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.depositos.add_retiro %}
+			<li>
+				<a href="/admin/depositos/retiro/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+	
+			<li>
+				<a href="/admin/depositos/retiro/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+
+	{% if perms.depositos.add_devolucion or perms.depositos.change_devolucion or perms.depositos.delete_devolucion %}
+	<li>
+		<a href="#">DEVOLUCIONES<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.depositos.add_devolucion %}
+			<li>
+				<a href="/admin/depositos/devolucion/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+	
+			<li>
+				<a href="/admin/depositos/devolucion/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+
+
+
+{% elif '/admin/servicios' in request.path %}
+
+	{% if perms.servicios.add_categoriadeservicio or perms.servicios.change_categoriadeservicio or perms.servicios.delete_categoriadeservicio %}
+	<li>
+		<a href="#">CATEGORIAS DE SERVICIO<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.servicios.add_categoriadeservicio %}
+			<li>
+				<a href="/admin/servicios/categoriadeservicio/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+	
+			<li>
+				<a href="/admin/servicios/categoriadeservicio/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+
+	{% if perms.servicios.add_tela or perms.servicios.change_tela or perms.servicios.delete_tela %}
+	<li>
+		<a href="#">TELA<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.servicios.add_tela %}
+			<li>
+				<a href="/admin/servicios/tela/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+			
+			<li>
+				<a href="/admin/servicios/tela/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+	
+	{% if perms.servicios.add_servicio or perms.servicios.change_servicio or perms.servicios.delete_servicio %}
+	<li>
+		<a href="#">SERVICIOS<span class="fa arrow"></span></a>
+		<ul class="nav nav-second-level">
+			{% if perms.servicios.add_servicio %}
+			<li>
+				<a href="/admin/servicios/servicio/add/">AGREGAR</a>
+			</li>
+			{% endif %}
+	
+			<li>
+				<a href="/admin/servicios/servicio/">LISTAR</a>
+			</li>
+		</ul>
+		<!-- /.nav-second-level -->
+	</li>
+	{% endif %}
+
+
+{% elif '/admin/produccion' in request.path %}
+
+	{% if perms.produccion.add_ordendetrabajo or perms.produccion.change_ordendetrabajo or perms.produccion.delete_ordendetrabajo %}
+		{% if perms.produccion.ver_ot_todos %}
+		<li>
+			<a href="/admin/produccion/ordendetrabajo/">TODOS</a>
+		</li>
+		{% endif %}
+		
+		{% if perms.produccion.ver_ot_pendientes %}
+		<li>
+			<a href="/admin/produccion/ordendetrabajo/pendiente/">PENDIENTES</a>
+		</li>
+		{% endif %}
+		
+		{% if perms.produccion.ver_ot_proceso %}
+		<li>
+			<a href="/admin/produccion/ordendetrabajo/proceso/">EN PROCESO</a>
+		</li>
+		{% endif %}
+		
+		{% if perms.produccion.ver_ot_produccion %}
+		<li>
+			<a href="/admin/produccion/ordendetrabajo/produccion/">EN PRODUCCION</a>
+		</li>
+		{% endif %}
+		
+		{% if perms.produccion.ver_ot_terminados %}
+		<li>
+			<a href="/admin/produccion/ordendetrabajo/terminado/">TERMINADOS</a>
+		</li>
+		{% endif %}
+		
+		{% if perms.produccion.ver_ot_revisados %}
+		<li>
+			<a href="/admin/produccion/ordendetrabajo/revisado/">REVISADOS</a>
+		</li>
+		{% endif %}
+		
+		{% if perms.produccion.ver_ot_entregados %}
+		<li>
+			<a href="/admin/produccion/ordendetrabajo/entregado/">ENTREGADOS</a>
+		</li>
+		{% endif %}
+		
+		{% if perms.produccion.ver_ot_rechazados %}
+		<li>
+			<a href="/admin/produccion/ordendetrabajo/rechazado">RECHAZADOS</a>
+		</li>
+		{% endif %}
+
+        {% if perms.produccion.ver_ot_entregas %}
+		<li>
+			<a href="/admin/produccion/ordendetrabajo/entregas">FECHAS DE ENTREGA</a>
+		</li>
+		{% endif %}
+
+        {% if perms.produccion.ver_ot_entregas %}
+		<li>
+			<a href="/admin/produccion/ordendetrabajo/calendario">CALENDARIO</a>
+		</li>
+		{% endif %}
+	{% endif %}
+	
+
+    {% elif '/admin/ventas' in request.path %}
+
+        {% if perms.ventas.add_venta or perms.ventas.change_venta or perms.ventas.delete_venta %}
+        <li>
+            <a href="/admin/ventas/venta/">VENTAS</a>
+        </li>
+        {% endif %}
+
+        <li>
+            <a href="/admin/ventas/caja/">CAJAS</a>
+        </li>
+
+        <li>
+            <a href="/admin/ventas/aperturacaja/">APERTURA DE CAJA</a>
+        </li>
+
+        <li>
+            <a href="/admin/ventas/cierrecaja/">CIERRE DE CAJA</a>
+        </li>
+
+        <li>
+        <a href="/admin/ventas/movimientoflujocaja/">MOVIMIENTOS</a>
+        </li>
+
+	{% elif '/admin/administracion' in request.path %}
+
+
+    <li>
+        <a href="/admin/administracion/categoriaflujocaja/">Categorías de Flujos de caja</a>
+    </li>
+
+
+    <li>
+        <a href="/admin/administracion/ingresodinero/">Ingreso de dinero</a>
+    </li>
+
+    <li>
+        <a href="/admin/administracion/retirodinero/">Retiro de dinero</a>
+    </li>
+
+{% endif %}
+
+</ul>

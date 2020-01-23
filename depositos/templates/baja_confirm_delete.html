@@ -1,0 +1,16 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+	<h2>Esta seguro que desea eliminar el registro de baja?</h2><br>
+	<p>Fecha: {{ object.baja.fecha }} </p><br>
+	<p>Deposito: {{ object.baja.deposito }}</p><br>
+	<p>Material: {{ object.material }}</p><br>
+	<p>Cantidad: {{ object.cantidad }}</p><br>
+	<p>Motivo: {{ object.motivo }}</p><br>
+
+	<button type="submit" class="btn btn-success">Aceptar</button>
+	<button type="button" onclick="window.history.back(); return false;" class="btn btn-danger">Cancelar</button>
+</form>
+{% endblock %}
+

@@ -1,0 +1,150 @@
+{% extends 'admin/base_site.html'%}
+{% load i18n admin_static %}
+{% load my_tags %}
+
+{% block extrastyle %}
+	<link rel="stylesheet" href="{% static 'chosen/chosen.css' %}">
+	<link rel="stylesheet" href="{% static 'chosen/docsupport/prism.css' %}">
+{% endblock %}
+
+{% block extrajs %}	
+<script src="{% static 'chosen/chosen.jquery.js' %}"></script>
+<script src="{% static 'chosen/docsupport/prism.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/jquery.maskedinput.min.js' %}"></script>
+
+
+<script type="text/javascript">
+	$(".chosen-select").chosen({
+		disable_search_threshold: 0,
+		no_results_text: "Sin resultados..",
+		width: "300px",
+		allow_single_deselect: true
+	});
+	$('.chosen-select').trigger('chosen:updated');
+
+    jQuery(function($) {
+        $(".date").mask("99/99/9999",{placeholder:"dd/mm/aaaa"});
+    });
+
+
+</script>
+{% endblock %}
+
+{% block content %}
+	<form class="form" method="get">
+		<h1>Calendario de entregas</h1>
+		<center>
+			<dl>
+				<table class="table-filter table table-bordered table-stripped">
+					<tbody>
+
+						<tr>
+							<th style="vertical-align:middle">
+								<strong> Fecha de entrega desde:</strong>	
+							</th>
+							<td style="vertical-align:middle">
+								<input type="text" class="date" placeholder="dd/mm/aaaa" name="fecha_de_entrega_desde" value="{{ fecha_de_entrega_desde }}">
+							</td>
+
+
+							<th style="vertical-align:middle">
+								<strong> Fecha de entrega hasta:</strong>	
+							</th>
+							<td style="vertical-align:middle" colspan="3">
+								<input type="text" class="date" placeholder="dd/mm/aaaa" name="fecha_de_entrega_hasta" value="{{ fecha_de_entrega_hasta }}">
+							</td>
+
+							<th style="border-top :3px solid white; border-right :3px solid white; border-bottom :3px solid white;">
+								<a class="btn btn-info" href="/admin/produccion/ordendetrabajo/calendario/" title="Limpiar Filtros">
+									<i class="fa fa-undo"></i>
+								</a>
+								<input type="submit" value="Buscar" class="btn btn-success" hidden="hidden" style="display: none">
+							</th>
+						</tr>
+
+					</tbody>
+				</table>
+			</dl>
+		</center>
+
+
+	</form>
+
+	<br></br>
+    <div align="left">
+		<h2>Total en cola ({{ total_ots }})</h2>
+    </div>
+
+	<div align="center">
+		<table id="result_list" class="table table-striped table-filter">
+			<thead>
+				<tr>
+                    <th>Fecha de Entrega</th>
+                    <th>Ordenes de trabajo</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				{% for fecha in object_list %}
+                <tr{% if fecha.ots > 10 %} style="background-color: #FFBBD1" {% endif %}  {% if fecha.fecha_de_entrega == hoy %} style="font-weight: bold; font-size: 110%;" {% endif %}>
+					<td> {{ fecha.fecha_de_entrega }}</td>
+                    <td>{{ fecha.ots }}</td>
+
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	{% if is_paginated %}
+	<table class="table">
+		<td>
+			<center>
+				<ul class="pagination pagination-sm">
+					{% if page_obj.has_previous %}
+					<li class="previous">
+						<a href="/admin/produccion/ordendetrabajo/calendario/?page={{ page_obj.previous_page_number }}&fecha_de_entrega_desde={{ fecha_de_entrega_desde }}&fecha_de_entrega_hasta={{ fecha_de_entrega_hasta }}">
+							<span aria-hidden="true">&larr;</span> Primera
+						</a>
+					</li>
+
+					<li>
+						<a href="/admin/produccion/ordendetrabajo/calendario/?page={{ page_obj.previous_page_number }}&fecha_de_entrega_desde={{ fecha_de_entrega_desde }}&fecha_de_entrega_hasta={{ fecha_de_entrega_hasta }}">
+							Anterior
+						</a>
+					</li> 	
+					{% endif %}
+
+					{% for page in page_obj.paginator.page_range|paginator_delimiter:page_obj.number %}
+					<li>
+						<a {% if page == page_obj.number %} class="active" style="background-color:#DD4814;color:white;" {% endif %} href="/admin/produccion/ordendetrabajo/calendario/?page={{ page }}&fecha_de_entrega_desde={{ fecha_de_entrega_desde }}&fecha_de_entrega_hasta={{ fecha_de_entrega_hasta }}">
+							{{ page }}
+						</a>
+					</li>
+					{% endfor %}
+
+					{% if page_obj.has_next %}
+					<li>
+						<a href="/admin/produccion/ordendetrabajo/calendario/?page={{ page_obj.next_page_number }}&fecha_de_entrega_desde={{ fecha_de_entrega_desde }}&fecha_de_entrega_hasta={{ fecha_de_entrega_hasta }}">
+							Siguiente
+						</a>
+					</li>
+					
+					<li class="next">
+						<a href="/admin/produccion/ordendetrabajo/calendario/?page={{ page_obj.paginator.num_pages}}&fecha_de_entrega_desde={{ fecha_de_entrega_desde }}&fecha_de_entrega_hasta={{ fecha_de_entrega_hasta }}">
+							&Uacute;ltima <span aria-hidden="true">&rarr;</span>
+						</a>
+					</li>
+					{% endif %}
+
+				</ul>
+			</center>
+		</td>
+		<th>
+			Pag. {{ page_obj.number }}/{{ page_obj.paginator.num_pages }} 
+		</th>
+	</table>
+	{% endif %}
+{% endblock %}

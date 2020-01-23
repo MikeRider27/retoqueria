@@ -1,0 +1,20 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+	<h1>Crear una cuenta de usuario</h1>
+	</br>
+	<p>Primero introduzca un nombre de usuario y una contraseña. Luego podrá editar el resto de opciones del usuario.</p>
+	</br>
+
+        <form method="POST" class="post-form">{% csrf_token %}
+        	<table>
+            	{{ form.as_table }}
+        	</table>
+
+        	</br>
+	<div align="right">
+			<button type="submit" class="btn btn-success">Aceptar</button>
+    </div>
+        </form>
+
+{% endblock %}

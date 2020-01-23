@@ -1,0 +1,83 @@
+{% load i18n admin_urls admin_static %}
+<div class="inline-group" id="{{ inline_admin_formset.formset.prefix }}-group">
+  <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
+{{ inline_admin_formset.formset.management_form }}
+{{ inline_admin_formset.formset.non_form_errors }}
+
+{% for inline_admin_form in inline_admin_formset %}<div class="inline-related{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last %} empty-form last-related{% endif %}" id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}">
+  <h3><b>{{ inline_admin_formset.opts.verbose_name|capfirst }}:</b>&nbsp;<span class="inline_label">{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% if inline_admin_form.model_admin.show_change_link and inline_admin_form.model_admin.has_registered_model %} <a href="{% url inline_admin_form.model_admin.opts|admin_urlname:'change' inline_admin_form.original.pk|admin_urlquote %}" class="inlinechangelink">{% trans "Change" %}</a>{% endif %}
+{% else %}#{{ forloop.counter }}{% endif %}</span>
+      {% if inline_admin_form.show_url %}<a href="{{ inline_admin_form.absolute_url }}">{% trans "View on site" %}</a>{% endif %}
+    {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}<span class="delete">{{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}</span>{% endif %}
+  </h3>
+  {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
+  {% for fieldset in inline_admin_form %}
+    {% include "admin/includes/fieldset.html" %}
+  {% endfor %}
+  {% if inline_admin_form.needs_explicit_pk_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+  {{ inline_admin_form.fk_field.field }}
+
+
+  <div id="id_{{ inline_admin_formset.formset.prefix }}-{{ forloop.counter0 }}-lista_de_materiales" align="center">
+    <h1>Lista de materiales</h1>
+
+    <table class="table table-striped table-bordered table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>Material</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+<script type="text/javascript">
+(function($) {
+
+  servicioid = $("#id_detalleordendetrabajo_set-{{ forloop.counter0 }}-servicio").val()
+  if(!servicioid){
+    return;
+  }
+  
+  $("#change_id_detalleordendetrabajo_set-{{ forloop.counter0 }}-servicio").attr("data-href-template", "/admin/servicios/servicio/add/?_to_field=id&_popup=1&servicioid="+ servicioid);
+
+  $.ajax({
+      data : {'servicioid' : servicioid },
+      url : "/admin/servicios/getlistadematerialesdelservicio",
+      type : "get",
+      success : function(data){
+          $("#id_detalleordendetrabajo_set-{{ forloop.counter0 }}-lista_de_materiales table tbody tr").remove();
+
+          for (var k=0; k<data.length; k++) {
+              $("#id_detalleordendetrabajo_set-{{ forloop.counter0 }}-lista_de_materiales table tbody").append('<tr><td>'+ data[k].material +'</td><td>'+data[k].cantidad+'</td></tr>');
+          }
+      }
+  }); 
+
+})(django.jQuery);
+</script>
+
+
+
+
+</div>{% endfor %}
+
+
+</div>
+
+<script type="text/javascript">
+(function($) {
+  $("#{{ inline_admin_formset.formset.prefix }}-group .inline-related").stackedFormset({
+    prefix: '{{ inline_admin_formset.formset.prefix }}',
+    adminStaticPrefix: '{% static "admin/" %}',
+    deleteText: "{% trans "Remove" %}",
+    addText: "{% blocktrans with verbose_name=inline_admin_formset.opts.verbose_name|capfirst %}Add another {{ verbose_name }}{% endblocktrans %}"
+  });
+})(django.jQuery);
+</script>

@@ -1,0 +1,156 @@
+{% extends "admin/base_site.html" %}
+{% load humanize %}
+
+{% block content %}
+<h1>Datos de la Orden de trabajo</h1>
+<table class="table table-striped table-filter" summary="Datos de la Orden de trabajo.">
+	<tbody>
+
+		<tr>
+			<th scope="row"> OT Nro.</th>
+			<td> {{ object.id|floatformat:"0"|intcomma|default_if_none:"&nbsp;" }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Revision </th>
+			<td> {{ object.revision|floatformat:"0"|intcomma|default_if_none:"&nbsp;" }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Cliente </th>
+			<td> {{ object.cliente }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Fecha de ingreso </th>
+			<td> {{ object.fecha_de_ingreso }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Fecha de entrega </th>
+			<td> {{ object.fecha_de_entrega }} </td>
+		</tr>
+
+        <tr>
+			<th scope="row"> Hora de entrega </th>
+			<td> {{ object.hora_de_entrega }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Prenda </th>
+			<td> {{ object.prenda }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Modista </th>
+			<td> {{ object.modista }} </td>
+		</tr>
+
+		<tr>
+			<th scope="row"> Estado </th>
+			<td> {{ object.get_estado_display }} </td>
+		</tr>
+
+        {% if perms.produccion.add_ordendetrabajo and perms.produccion.delete_ordendetrabajo %}
+        <tr>
+			<th scope="row"> Total </th>
+			<td> {{ object.total|floatformat:"0"|intcomma|default_if_none:"&nbsp;" }} </td>
+		</tr>
+        {% endif %}
+
+		{% if object.ninos == True %}
+		<tr>
+			<th scope="row"> Niños </th>
+			<td> <i class="fa fa-check"></i> </td>
+		</tr>
+		{% endif %}
+
+		{% if object.express == True %}
+		<tr>
+			<th scope="row"> Express </th>
+			<td> <i class="fa fa-check"></i> </td>
+		</tr>
+		{% endif %}
+
+		{% if object.con_forro == True %}
+		<tr>
+			<th scope="row"> Con forro </th>
+			<td> <i class="fa fa-check"></i> </td>
+		</tr>
+		{% endif %}
+
+		{% if object.con_pedreria == True %}
+		<tr>
+			<th scope="row"> Con pedreria/encaje/lentejuela </th>
+			<td> <i class="fa fa-check"></i> </td>
+		</tr>
+		{% endif %}
+
+        {% if object.gestion_de_compra == True %}
+		<tr>
+			<th scope="row"> Gestión de compra </th>
+			<td> <i class="fa fa-check"></i> </td>
+		</tr>
+		{% endif %}
+
+	</tbody>
+</table>
+
+{% if detalles %}
+	{% for detalle in detalles %}
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h1>{{ detalle.numero }}</h1>
+			<table class="table table-striped table-filter" summary="Datos de la Orden de trabajo.">
+				<tbody>
+
+					<tr>
+
+						<th scope="row"> Servicio </th>
+						<td> {{ detalle.servicio }} </td>
+
+						<th scope="row"> Tela </th>
+						<td> {{ detalle.tela }} </td>
+					</tr>
+
+
+					<tr>
+						<th scope="row"> Observaciones </th>
+						<td colspan="3"> {{ detalle.observaciones }} </td>
+					</tr>
+
+
+				</tbody>
+			</table>
+
+			{% if detalle.servicio.get_materiales %}
+			<table id="result_list" class="table table-striped table-bordered table-hover table-condensed">
+				<caption><h1>Materiales</h1></caption>
+
+				<thead>
+					<tr>
+						<th>Material</th>
+						<th>Cantidad</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for subdetalle in detalle.servicio.get_materiales %}
+					<tr>
+						<td>{{ subdetalle.material }}</td>
+						<td>{{ subdetalle.cantidad|floatformat:"0"|intcomma|default_if_none:"&nbsp;" }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% endif %}
+
+		</div>
+	</div>
+	{% endfor %}
+{% endif %}
+
+
+<button type="button" class="btn btn-primary" onclick="window.history.back(); return false;">Volver</button>
+
+{% endblock %}

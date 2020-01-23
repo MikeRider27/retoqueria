@@ -1,0 +1,23 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div>
+	<form action="" method="post">{% csrf_token %}
+		<div align="center">
+
+			<h2>Asignar Modista</h2>
+			<br>
+
+			{{ form.as_p }}
+
+			<button type="submit" class="btn btn-success">Aceptar</button>
+			<button type="button" onclick="window.history.back(); return false;" class="btn btn-danger">Cancelar</button>
+
+		</div>
+	</form>
+</div>
+{% endblock %}
+
+{% block footer %}
+{{ form.media }}
+{% endblock %}

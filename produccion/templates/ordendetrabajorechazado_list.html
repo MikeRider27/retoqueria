@@ -1,0 +1,257 @@
+{% extends 'admin/base_site.html'%}
+{% load i18n admin_static %}
+{% load my_tags %}
+
+{% block extrastyle %}
+	<link rel="stylesheet" href="{% static 'chosen/chosen.css' %}">
+	<link rel="stylesheet" href="{% static 'chosen/docsupport/prism.css' %}">
+{% endblock %}
+
+{% block extrajs %}	
+<script src="{% static 'chosen/chosen.jquery.js' %}"></script>
+<script src="{% static 'chosen/docsupport/prism.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/jquery.maskedinput.min.js' %}"></script>
+
+
+<script type="text/javascript">
+	$(".chosen-select").chosen({
+		disable_search_threshold: 0,
+		no_results_text: "Sin resultados..",
+		width: "300px",
+		allow_single_deselect: true
+	});
+	$('.chosen-select').trigger('chosen:updated');
+
+    jQuery(function($) {
+        $(".date").mask("99/99/9999",{placeholder:"dd/mm/aaaa"});
+    });
+
+
+</script>
+{% endblock %}
+
+{% block content %}
+	<form class="form" method="get">
+		<h1>Lista de ordenes de trabajo rechazadas</h1>
+		<center>
+			<dl>
+				<table class="table-filter table table-bordered table-stripped">
+					<tbody>
+						<tr>
+							<th style="vertical-align:middle">
+								<strong> Numero:</strong>	
+							</th>
+							<td style="vertical-align:middle">
+								<input type="text" class="search-query" placeholder="99999" name="q" value="{{ q }}">
+							</td>
+
+							<th style="vertical-align:middle">
+								<strong> Cliente:</strong>	
+							</th>
+							<td style="vertical-align:middle">
+								<select class="chosen-select" data-placeholder="Seleccione un cliente.." name="cliente_id" value="{{ cliente_id }}" onchange="this.form.submit();">
+									<option value=""></option>
+									{% for cliente in clientes %}
+									<option {% if cliente.pk == cliente_id %} selected {% endif %} value="{{ cliente.id }}">{{ cliente }}</option>
+									{% endfor %}
+								</select>
+							</td>
+						</tr>
+
+						<tr>
+
+							<th style="vertical-align:middle">
+								<strong> Fecha de ingreso desde:</strong>	
+							</th>
+							<td style="vertical-align:middle">
+								<input type="text" class="date" placeholder="dd/mm/aaaa" name="fecha_de_ingreso_desde" value="{{ fecha_de_ingreso_desde }}">
+							</td>
+
+
+							<th style="vertical-align:middle">
+								<strong> Fecha de ingreso hasta:</strong>	
+							</th>
+							<td style="vertical-align:middle" colspan="3">
+								<input type="text" class="date" placeholder="dd/mm/aaaa" name="fecha_de_ingreso_hasta" value="{{ fecha_de_ingreso_hasta }}">
+							</td>
+						</tr>
+						
+						<tr>
+
+							<th style="vertical-align:middle">
+								<strong> Fecha de entrega desde:</strong>	
+							</th>
+							<td style="vertical-align:middle">
+								<input type="text" class="date" placeholder="dd/mm/aaaa" name="fecha_de_entrega_desde" value="{{ fecha_de_entrega_desde }}">
+							</td>
+
+
+							<th style="vertical-align:middle">
+								<strong> Fecha de entrega hasta:</strong>	
+							</th>
+							<td style="vertical-align:middle" colspan="3">
+								<input type="text" class="date" placeholder="dd/mm/aaaa" name="fecha_de_entrega_hasta" value="{{ fecha_de_entrega_hasta }}">
+							</td>
+
+
+
+							<th style="border-top :3px solid white; border-right :3px solid white; border-bottom :3px solid white;">
+								<a class="btn btn-info" href="/admin/produccion/ordendetrabajo/" title="Limpiar Filtros"> 
+									<i class="fa fa-undo"></i>
+								</a>
+								<input type="submit" value="Buscar" class="btn btn-success" hidden="hidden" style="display: none">
+							</th>
+						</tr>
+
+                        <tr>
+							<th style="vertical-align:middle">
+								<strong> Modista:</strong>
+							</th>
+							<td style="vertical-align:middle">
+								<select class="chosen-select" data-placeholder="Seleccione una modista.." name="modista_id" value="{{ modista_id }}" onchange="this.form.submit();">
+									<option value=""></option>
+									{% for modista in modistas %}
+									<option {% if modista.pk == modista_id %} selected {% endif %} value="{{ modista.id }}">{{ modista }}</option>
+									{% endfor %}
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</dl>
+		</center>
+		
+		<div id="next_button" align="right">
+
+            <button onclick="this.form.submit();" class="btn btn-danger pull-left" name="pdf_materiales" value="pdf_materiales" type="submit" title="Reporte de materiales">
+				<i class="fa fa-file-pdf-o"></i>
+			</button>
+
+			<button onclick="this.form.submit();" class="btn btn-success" name="excel" value="excel" type="submit" title="Exportar a Excel">
+				<i class="fa fa-file-excel-o"></i>
+			</button>
+
+			{% if perms.produccion.add_ordendetrabajo %}
+			<button type="button" class="btn btn-primary" onclick="location.href='/admin/produccion/ordendetrabajo/add/?next={{ request.path }}';" title="Agregar Venta">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+			{% endif %}
+	 
+		</div>
+	</form>
+
+
+	<br></br>
+
+	<div align="center">
+		<table id="result_list" class="table table-striped table-filter">
+			<thead>
+				<tr>
+					<th>Numero</th>
+					<th>Fecha de ingreso</th>
+                    <th>Fecha de entrega</th>
+					<th>Cliente</th>
+					<th>Estado</th>
+					<th>Acciones</th>		 
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for ordendetrabajo in object_list %}
+				<tr>
+					<td>{{ ordendetrabajo.id|separador_miles }}</td>
+					<td>{{ ordendetrabajo.fecha_de_ingreso }}</td>
+                    <td>{{ ordendetrabajo.fecha_de_entrega }}</td>
+					<td>{{ ordendetrabajo.cliente }}</td>
+					<td>{{ ordendetrabajo.get_estado_display }}</td>
+
+					<td>
+						{% if perms.produccion.change_ordendetrabajo %}
+						<button type="button" class="btn btn-warning btn-xs" onclick="location.href='/admin/produccion/ordendetrabajo/{{ ordendetrabajo.id }}/?next={{ request.path }}';" title="Editar">
+							<i class="fa fa-pencil"></i>
+						</button>
+						{% endif %}
+
+						{% if perms.produccion.delete_ordendetrabajo %}
+						<button type="button" class="btn btn-danger btn-xs" onclick="location.href='/admin/produccion/ordendetrabajo/{{ ordendetrabajo.id }}/delete/?next={{ request.path }}';" title="Borrar">
+							<i class="fa fa-minus"></i>
+						</button>
+						{% endif %}
+
+
+
+						{% if perms.produccion.retroceder_ot_entregado %}
+						<button type="button" class="btn btn-default btn-xs" onclick="location.href='/admin/produccion/ordendetrabajo/{{ ordendetrabajo.id }}/retrocederotentregado/?next={{ request.path }}';" title="Retroceder al estado entregado">
+							<i class="fa fa-reply"></i>
+						</button>
+						{% endif %}
+
+						{% if perms.produccion.reprogramar_ot %}
+						<button type="button" class="btn btn-default btn-xs" onclick="location.href='/admin/produccion/ordendetrabajo/{{ ordendetrabajo.id }}/reprogramartrabajo/?next={{ request.path }}';" title="Reanudar el trabajo rechazado">
+							<i class="fa fa-clock-o"></i>
+						</button>
+						{% endif %}
+							
+
+
+						<button type="button" class="btn btn-info btn-xs" onclick="location.href='/admin/produccion/ordendetrabajo/{{ ordendetrabajo.id }}/detail/';" title="Detalle">
+							<i class="fa fa-list-ol"></i>
+						</button>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	{% if is_paginated %}
+	<table class="table">
+		<td>
+			<center>
+				<ul class="pagination pagination-sm">
+					{% if page_obj.has_previous %}
+					<li class="previous">
+						<a href="/admin/produccion/ordendetrabajo/rechazado/?page={{ page_obj.previous_page_number }}&q={{ q }}&cliente_id={{ cliente_id }}&estado={{ estado }}&fecha_de_ingreso_desde={{ fecha_de_ingreso_desde }}&fecha_de_ingreso_hasta={{ fecha_de_ingreso_hasta }}&fecha_de_entrega_desde={{ fecha_de_entrega_desde }}&fecha_de_entrega_hasta={{ fecha_de_entrega_hasta }}&modista_id={{ modista_id }}">
+							<span aria-hidden="true">&larr;</span> Primera
+						</a>
+					</li>
+
+					<li>
+						<a href="/admin/produccion/ordendetrabajo/rechazado/?page={{ page_obj.previous_page_number }}&q={{ q }}&cliente_id={{ cliente_id }}&estado={{ estado }}&fecha_de_ingreso_desde={{ fecha_de_ingreso_desde }}&fecha_de_ingreso_hasta={{ fecha_de_ingreso_hasta }}&fecha_de_entrega_desde={{ fecha_de_entrega_desde }}&fecha_de_entrega_hasta={{ fecha_de_entrega_hasta }}&modista_id={{ modista_id }}">
+							Anterior
+						</a>
+					</li> 	
+					{% endif %}
+
+					{% for page in page_obj.paginator.page_range|paginator_delimiter:page_obj.number %}
+					<li>
+						<a {% if page == page_obj.number %} class="active" style="background-color:#DD4814;color:white;" {% endif %} href="/admin/produccion/ordendetrabajo/rechazado/?page={{ page }}&q={{ q }}&cliente_id={{ cliente_id }}&estado={{ estado }}&fecha_de_ingreso_desde={{ fecha_de_ingreso_desde }}&fecha_de_ingreso_hasta={{ fecha_de_ingreso_hasta }}&fecha_de_entrega_desde={{ fecha_de_entrega_desde }}&fecha_de_entrega_hasta={{ fecha_de_entrega_hasta }}&modista_id={{ modista_id }}">
+							{{ page }}
+						</a>
+					</li>
+					{% endfor %}
+
+					{% if page_obj.has_next %}
+					<li>
+						<a href="/admin/produccion/ordendetrabajo/rechazado/?page={{ page_obj.next_page_number }}&q={{ q }}&cliente_id={{ cliente_id }}&estado={{ estado }}&fecha_de_ingreso_desde={{ fecha_de_ingreso_desde }}&fecha_de_ingreso_hasta={{ fecha_de_ingreso_hasta }}&fecha_de_entrega_desde={{ fecha_de_entrega_desde }}&fecha_de_entrega_hasta={{ fecha_de_entrega_hasta }}&modista_id={{ modista_id }}">
+							Siguiente
+						</a>
+					</li>
+					
+					<li class="next">
+						<a href="/admin/produccion/ordendetrabajo/rechazado/?page={{ page_obj.paginator.num_pages}}&q={{ q }}&cliente_id={{ cliente_id }}&estado={{ estado }}&fecha_de_ingreso_desde={{ fecha_de_ingreso_desde }}&fecha_de_ingreso_hasta={{ fecha_de_ingreso_hasta }}&fecha_de_entrega_desde={{ fecha_de_entrega_desde }}&fecha_de_entrega_hasta={{ fecha_de_entrega_hasta }}&modista_id={{ modista_id }}">
+							&Uacute;ltima <span aria-hidden="true">&rarr;</span>
+						</a>
+					</li>
+					{% endif %}
+
+				</ul>
+			</center>
+		</td>
+		<th>
+			Pag. {{ page_obj.number }}/{{ page_obj.paginator.num_pages }} 
+		</th>
+	</table>
+	{% endif %}
+{% endblock %}
